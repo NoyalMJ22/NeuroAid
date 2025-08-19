@@ -1,0 +1,53 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroAid - {% block title %}{% endblock %}</title>
+
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- OpenDyslexic Font -->
+    <style>
+        @font-face {
+            font-family: 'OpenDyslexic';
+            src: url('{{ url_for("static", filename="fonts/OpenDyslexic-Regular.otf") }}') format("opentype");
+            font-weight: normal;
+            font-style: normal;
+        }
+        body {
+            font-family: 'OpenDyslexic', Arial, sans-serif;
+            margin: 0;
+            background-color: #f8fafc;
+            color: #222;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">NeuroAid</div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('dyslexia') }}">Dyslexia</a></li>
+                <li><a href="{{ url_for('games') }}">Games</a></li>
+                <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Content -->
+    <main class="content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 NeuroAid. All rights reserved.</p>
+    </footer>
+</body>
+</html>

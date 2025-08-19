@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dyslexia Risk Checklist</title>
+<style>
+    body { font-family: Arial, sans-serif; background: #f7fafc; padding: 20px; max-width: 700px; margin: auto; }
+    h2 { color: #2d3748; }
+    .question { background: #fff; padding: 15px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #ddd; }
+    .question p { font-weight: bold; }
+    .results { padding: 20px; border-radius: 8px; margin-top: 20px; }
+    .low { background: #e6fffa; border: 2px solid #38b2ac; }
+    .mild { background: #fffaf0; border: 2px solid #dd6b20; }
+    .moderate { background: #fefcbf; border: 2px solid #d69e2e; }
+    .high { background: #fff5f5; border: 2px solid #e53e3e; }
+    button { background: #3182ce; color: white; border: none; padding: 10px 15px; border-radius: 6px; cursor: pointer; }
+    button:hover { background: #2b6cb0; }
+    .progress { height: 12px; background: #e2e8f0; border-radius: 6px; margin: 15px 0; }
+    .progress-bar { height: 100%; background: #38b2ac; width: 0%; border-radius: 6px; transition: width 0.3s ease; }
+</style>
+</head>
+<body>
+
+<h2>Dyslexia Risk Checklist</h2>
+<p>Select “Yes” for any statements that describe your child.</p>
+
+<div class="progress"><div id="progressBar" class="progress-bar"></div></div>
+
+<form id="dyslexiaForm">
+    <div class="question">
+        <p>Has difficulty reading unfamiliar words and often guesses at them.</p>
+        <label><input type="radio" name="q1" value="yes" onchange="updateProgress()"> Yes</label>
+        <label><input type="radio" name="q1" value="no" onchange="updateProgress()"> No</label>
+    </div>
+
+    <div class="question">
+        <p>Pauses, repeats or makes frequent mistakes when reading aloud.</p>
+        <label><input type="radio" name="q2" value="yes" onchange="updateProgress()"> Yes</label>
+        <label><input type="radio" name="q2" value="no" onchange="updateProgress()"> No</label>
+    </div>
+
+    <div class="question">
+        <p>Mispronounces (or used to) certain words (e.g., says "amunul" for animal).</p>
+        <label><input type="radio" name="q3" value="yes" onchange="updateProgress()"> Yes</label>
+        <label><input type="radio" name="q3" value="no" onchange="updateProgress()"> No</label>
+    </div>
+
+    <div class="question">
+        <p>Struggles to understand what he or she has read.</p>
+        <label><input type="radio" name="q4" value="yes" onchange="updateProgress()"> Yes</label>
+        <label><input type="radio" name="q4" value="no" onchange="updateProgress()"> No</label>
+    </div>
+
+    <div class="question">
+        <p>Doesn't like to read for fun.</p>
+        <label><input type="radio" name="q5" value="yes" onchange="updateProgress()"> Yes</label>
+        <label><input type="radio" name="q5" value="no" onchange="updateProgress()"> No</label>
+    </div>
+
+    <div class="question">
+        <p>Makes frequent spelling errors.</p>
+        <label><input type="radio" name="q6" value="yes" onchange="updateProgress()"> Yes</label>
+        <label><input type="radio" name="q6" value="no" onchange="updateProgress()"> No</label>
+    </div>
+
+    <div class="question">
+        <p>Has messy handwriting.</p>
+        <label><input type="radio" name="q7" value="yes" onchange="updateProgress()"> Yes</label>
+        <label><input type="radio" name="q7" value="no" onchange="updateProgress()"> No</label>
+    </div>
+
+    <div class="question">
+        <p>Has trouble with punctuation and capitalization.</p>
+        <label><input type="radio" name="q8" value="yes" onchange="updateProgress()"> Yes</label>
+        <label><input type="radio" name="q8" value="no" onchange="updateProgress()"> No</label>
+    </div>
+
+    <div class="question">
+        <p>Resists writing tasks.</p>
+        <label><input type="radio" name="q9" value="yes" onchange="updateProgress()"> Yes</label>
+        <label><input type="radio" name="q9" value="no" onchange="updateProgress()"> No</label>
+    </div>
+
+    <div class="question">
+        <p>Becomes frustrated or angry when doing school work.</p>
+        <label><input type="radio" name="q10" value="yes" onchange="updateProgress()"> Yes</label>
+        <label><input type="radio" name="q10" value="no" onchange="updateProgress()"> No</label>
+    </div>
+
+    <div class="question">
+        <p>Has a blood relative with a history of reading, spelling, or writing problems.</p>
+        <label><input type="radio" name="q11" value="yes" onchange="updateProgress()"> Yes</label>
+        <label><input type="radio" name="q11" value="no" onchange="updateProgress()"> No</label>
+    </div>
+
+    <button type="button" onclick="calculateRisk()">Submit</button>
+</form>
+
+<div id="results" style="display:none;"></div>
+
+<script>
+function updateProgress() {
+    const totalQuestions = 11;
+    let answered = document.querySelectorAll("input[type=radio]:checked").length;
+    let progress = (answered / totalQuestions) * 100;
+    document.getElementById("progressBar").style.width = progress + "%";
+}
+
+function calculateRisk() {
+    let yesCount = 0;
+    const totalQuestions = 11;
+    const form = document.getElementById("dyslexiaForm");
+
+    for (let i = 1; i <= totalQuestions; i++) {
+        let answer = form.querySelector(`input[name="q${i}"]:checked`);
+        if (answer && answer.value === "yes") {
+            yesCount++;
+        }
+    }
+
+    let riskLevel = "";
+    let message = "";
+    let cssClass = "";
+
+    if (yesCount >= 8) {
+        riskLevel = "High Risk";
+        message = "Your child shows multiple strong indicators of dyslexia. A professional evaluation is recommended.";
+        cssClass = "high";
+    } else if (yesCount >= 5) {
+        riskLevel = "Moderate Risk";
+        message = "Your child shows some signs of dyslexia. Consider additional testing and targeted learning strategies.";
+        cssClass = "moderate";
+    } else if (yesCount >= 3) {
+        riskLevel = "Mild Risk";
+        message = "Some indicators are present. Monitor progress and consider screening if difficulties persist.";
+        cssClass = "mild";
+    } else {
+        riskLevel = "Low Risk";
+        message = "Few or no signs of dyslexia are present.";
+        cssClass = "low";
+    }
+
+    document.getElementById("results").innerHTML = `
+        <div class="results ${cssClass}">
+            <h3>Risk Level: ${riskLevel}</h3>
+            <p>${message}</p>
+            <p><b>Yes Responses:</b> ${yesCount} out of ${totalQuestions}</p>
+        </div>
+    `;
+    document.getElementById("results").style.display = "block";
+
+    // Optional: speak result aloud for accessibility
+    if ("speechSynthesis" in window) {
+        const utterance = new SpeechSynthesisUtterance(`Risk Level: ${riskLevel}. ${message}`);
+        speechSynthesis.speak(utterance);
+    }
+}
+</script>
+
+</body>
+</html>
