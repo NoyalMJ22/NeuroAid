@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About NeuroAid</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"/>
+
+  <style>
+    @font-face {
+      font-family: 'OpenDyslexic';
+      src: url('/static/fonts/OpenDyslexic-Regular.woff2') format('woff2'),
+           url('/static/fonts/OpenDyslexic-Regular.woff') format('woff'),
+           url('/static/fonts/OpenDyslexic-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'OpenDyslexic';
+      src: url('/static/fonts/OpenDyslexic-Bold.woff2') format('woff2'),
+           url('/static/fonts/OpenDyslexic-Bold.woff') format('woff'),
+           url('/static/fonts/OpenDyslexic-Bold.ttf') format('truetype');
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'OpenDyslexic';
+      src: url('/static/fonts/OpenDyslexic-Italic.woff2') format('woff2'),
+           url('/static/fonts/OpenDyslexic-Italic.woff') format('woff'),
+           url('/static/fonts/OpenDyslexic-Italic.ttf') format('truetype');
+      font-weight: normal;
+      font-style: italic;
+    }
+
+    @font-face {
+      font-family: 'OpenDyslexic';
+      src: url('/static/fonts/OpenDyslexic-Bold-Italic.woff2') format('woff2'),
+           url('/static/fonts/OpenDyslexic-Bold-Italic.woff') format('woff'),
+           url('/static/fonts/OpenDyslexic-Bold-Italic.ttf') format('truetype');
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    body, h1, h2, h3, h4, h5, h6, p, a, button, input, textarea, select, footer, nav {
+      font-family: 'OpenDyslexic', Arial, sans-serif !important;
+    }
+  </style>
+
+  <style>
+    .high-contrast {
+      background: black !important;
+      color: yellow !important;
+    }
+
+    .high-contrast a {
+      color: cyan !important;
+    }
+
+    .large-text {
+      font-size: 20px !important;
+      line-height: 1.9 !important;
+    }
+
+    .shuffled-text {
+      font-family: 'OpenDyslexic', Arial, sans-serif; /* Maintain font family */
+    }
+
+    /* Unique Card Design */
+    .card {
+      background: #ffffff;
+      border-radius: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      padding: 2.5rem;
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-indigo-600">NeuroAid</h1>
+      <nav class="space-x-6">
+        <a href="/" class="hover:text-indigo-500">Home</a>
+        <a href="/dyslexia" class="hover:text-indigo-500">Dyslexia</a>
+        <a href="/games" class="hover:text-indigo-500">Games</a>
+        <a href="/dashboard" class="hover:text-indigo-500">Dashboard</a>
+        <a href="/about" class="hover:text-indigo-500">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-6 py-16">
+
+    <div class="flex flex-wrap justify-center gap-4 mb-10">
+      <button id="toggle-tts" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full shadow hover:bg-indigo-700 transition duration-200 ease-in-out transform hover:scale-105">
+        🔊 Read Aloud
+      </button>
+      <button id="toggle-dyslexia" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full shadow hover:bg-indigo-700 transition duration-200 ease-in-out transform hover:scale-105">
+        🔀 Shuffle Letters
+      </button>
+      <button id="toggle-contrast" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full shadow hover:bg-indigo-700 transition duration-200 ease-in-out transform hover:scale-105">
+        🌗 High Contrast
+      </button>
+      <button id="toggle-large" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full shadow hover:bg-indigo-700 transition duration-200 ease-in-out transform hover:scale-105">
+        🔎 Large Text
+      </button>
+    </div>
+
+    <div class="card" id="about-container">
+      <h2 class="text-4xl font-extrabold text-center text-indigo-800 mb-6">About NeuroAid</h2>
+      <p class="text-lg leading-relaxed text-gray-700 mb-8 text-center">
+        NeuroAid is a project dedicated to providing an accessible and supportive learning environment for individuals with dyslexia. Our goal is to offer simple, effective tools and engaging activities that make learning more manageable and fun.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-10">
+        <div class="flex flex-col items-start space-y-4">
+          <div class="flex items-center space-x-3 text-indigo-600">
+            <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.5 8l2.5 2.5m0 0l2.5-2.5m-2.5 2.5h-12m0 0l2.5-2.5m-2.5 2.5l2.5 2.5"></path></svg>
+            <h3 class="text-2xl font-bold">Key Features</h3>
+          </div>
+          <ul class="list-none space-y-4 text-gray-600">
+            <li>
+              <strong class="text-indigo-600">Read Aloud:</strong> A powerful text-to-speech feature that reads content aloud, helping to improve phonological awareness and comprehension.
+            </li>
+            <li>
+              <strong class="text-indigo-600">Letter Shuffle:</strong> A unique tool that simulates the dyslexia reading experience by dynamically shuffling letters within words to foster empathy and understanding.
+            </li>
+            <li>
+              <strong class="text-indigo-600">Engaging Games:</strong> Fun, interactive games designed to strengthen cognitive skills essential for reading, memory, and focus.
+            </li>
+          </ul>
+        </div>
+        <div>
+          <img src="C:\Users\noyal\Desktop\Devolopment\neuroaid\assets\image.png" alt="Illustration of a person reading with support" class="rounded-xl shadow-lg">
+        </div>
+      </div>
+      
+      <div class="bg-gray-100 p-8 rounded-xl text-center shadow-inner">
+        <h3 class="text-2xl font-bold text-indigo-600 mb-4">Support & Community</h3>
+        <p class="text-lg leading-relaxed text-gray-700 mb-6">
+          You are not alone on this journey. While NeuroAid provides helpful tools, professional guidance is always recommended for a comprehensive assessment.
+        </p>
+        <p class="text-lg leading-relaxed text-gray-700">
+          For more information and resources, please contact us at <a href="mailto:support@neuroaid.dev" class="text-indigo-600 hover:text-indigo-800 font-semibold transition duration-200">support@neuroaid.dev</a>.
+        </p>
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="/" class="inline-block px-8 py-4 bg-indigo-600 text-white font-semibold rounded-full shadow-lg hover:bg-indigo-700 transition duration-200 transform hover:scale-105">
+          ← Back to Home
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-gray-100 py-6 mt-12 text-center text-gray-600">
+    <p>&copy; 2025 NeuroAid. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const container = document.getElementById("about-container");
+    const textElements = container.querySelectorAll("p, li, h2, h3, strong, a");
+    
+    // ---- Read Aloud ----
+    document.getElementById("toggle-tts").addEventListener("click", () => {
+      let text = container.innerText;
+      let utterance = new SpeechSynthesisUtterance(text);
+      speechSynthesis.speak(utterance);
+    });
+
+    // ---- Dyslexia Shuffle (letters only inside words) ----
+    let shuffleActive = false;
+    let intervalId;
+    let originalHtml = new Map();
+
+    function shuffleWord(word) {
+      if (word.length < 4) return word;
+      let chars = word.split("");
+      let middle = chars.slice(1, -1);
+      for (let i = middle.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [middle[i], middle[j]] = [middle[j], middle[i]];
+      }
+      return chars[0] + middle.join("") + chars[chars.length - 1];
+    }
+    
+    function scrambleText() {
+        textElements.forEach(node => {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = originalHtml.get(node) || node.innerHTML;
+            
+            // Scramble only the text content within the node, leaving tags intact
+            tempDiv.childNodes.forEach(child => {
+                if (child.nodeType === 3) { // Text node
+                    child.textContent = child.textContent.split(/\s+/).map(shuffleWord).join(" ");
+                }
+            });
+            node.innerHTML = tempDiv.innerHTML;
+        });
+    }
+
+    document.getElementById("toggle-dyslexia").addEventListener("click", e => {
+      if (!shuffleActive) {
+        // Store original content before scrambling
+        textElements.forEach(node => {
+            originalHtml.set(node, node.innerHTML);
+        });
+        
+        intervalId = setInterval(scrambleText, 1200);
+        shuffleActive = true;
+        e.target.classList.add("bg-indigo-700");
+        e.target.classList.remove("bg-indigo-600");
+        e.target.textContent = "✅ Unshuffle Letters";
+      } else {
+        clearInterval(intervalId);
+        // Restore original content
+        originalHtml.forEach((html, node) => {
+            node.innerHTML = html;
+        });
+        shuffleActive = false;
+        e.target.classList.remove("bg-indigo-700");
+        e.target.classList.add("bg-indigo-600");
+        e.target.textContent = "🔀 Shuffle Letters";
+      }
+    });
+
+    // ---- High Contrast ----
+    document.getElementById("toggle-contrast").addEventListener("click", e => {
+      document.body.classList.toggle("high-contrast");
+      e.target.classList.toggle("bg-indigo-700");
+      e.target.classList.toggle("bg-indigo-600");
+    });
+
+    // ---- Large Text ----
+    document.getElementById("toggle-large").addEventListener("click", e => {
+      container.classList.toggle("large-text");
+      e.target.classList.toggle("bg-indigo-700");
+      e.target.classList.toggle("bg-indigo-600");
+    });
+  </script>
+</body>
+</html>
