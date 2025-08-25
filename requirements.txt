@@ -1,0 +1,4 @@
+flask
+pyttsx3
+sympy
+matplotlib

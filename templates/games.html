@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Learning Games — NeuroAid Lite</title>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"/>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet" /> 
+
+  <style>
+    @font-face {
+      font-family: 'OpenDyslexic';
+      src: url('/static/fonts/OpenDyslexic-Regular.woff2') format('woff2'),
+           url('/static/fonts/OpenDyslexic-Regular.woff') format('woff'),
+           url('/static/fonts/OpenDyslexic-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    body, h1, h2, h3, h4, h5, h6, p, a, button, input, textarea, select, footer, nav {
+      font-family: 'OpenDyslexic', Arial, sans-serif !important;
+    }
+  </style>
+
+  <style>
+    body {
+      background:#f4f6fb;
+      padding: 0;
+      margin: 0;
+      line-height:1.5;
+      color:#2d3748;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .navbar a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #2d3748;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .navbar a:hover { color: #4c51bf; }
+
+    .main-container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      padding-top: 0;
+    }
+    h1 { font-size:32px; margin-bottom:8px; }
+    h2 { font-size: 22px; margin-bottom:8px; }
+    h3 { margin-bottom:6px; }
+    .section { margin-bottom:32px; }
+    .game-card {
+      border:1px solid #e2e8f0;
+      padding:18px;
+      border-radius:16px;
+      background:#fff;
+      margin-top:12px;
+      box-shadow:0 3px 8px rgba(0,0,0,0.05);
+      transition: transform .15s ease;
+    }
+    .game-card:hover { transform: translateY(-2px); }
+    .row { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:10px; }
+    .tiles { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+    .tile {
+      padding:10px 14px;
+      background:#edf2f7;
+      border-radius:8px;
+      border:1px solid #cbd5e0;
+      cursor:pointer;
+      user-select:none;
+    }
+    .option { padding:10px; border-radius:8px; background:#fafafa; border:1px solid #e2e8f0; cursor:pointer; }
+    .score { margin-top:10px; font-weight:700; }
+    .drag-slot {
+      min-width:48px; min-height:40px;
+      border:2px dashed #cbd5e0;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:6px;
+      padding:6px;
+      background:#fff;
+    }
+    .section h2 {
+      background:#4c51bf;
+      color:white;
+      padding:10px;
+      border-radius:10px;
+    }
+    .button {
+      padding:8px 14px;
+      border-radius:8px;
+      border:none;
+      cursor:pointer;
+      font-weight:600;
+      transition:background .2s ease;
+    }
+    .dyslexia-button { background:#48bb78; color:white; }
+    .math-button { background:#3182ce; color:white; }
+    .dyslexia-toggle { background:#d53f8c; color:white; margin-bottom:20px; }
+    .explanation {
+      font-size:14px;
+      background:#f7fafc;
+      padding:10px 12px;
+      border-radius:8px;
+      margin-bottom:10px;
+      border-left:4px solid #4c51bf;
+    }
+    .description {
+      font-size:14px;
+      margin-top:8px;
+      color:#4a5568;
+    }
+    
+    /* New theme styles */
+    .hero-section {
+      background: #eef2ff;
+      padding: 6rem 1.5rem;
+      text-align: center;
+    }
+    .main-content {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      padding: 2.5rem;
+      transition: transform .15s ease;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-indigo-600">NeuroAid</h1>
+      <nav class="flex items-center space-x-6">
+        <a href="/" class="hover:text-indigo-500">Home</a>
+        <a href="/dyslexia" class="hover:text-indigo-500">Dyslexia</a>
+        <a href="/games" class="hover:text-indigo-500">Games</a>
+        <a href="/dashboard" class="hover:text-indigo-500">Dashboard</a>
+        <a href="/about" class="hover:text-indigo-500">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="hero-section">
+    <h1 class="text-4xl font-extrabold text-indigo-800 mb-4">Support Learning. Build Confidence.</h1>
+    <p class="text-lg text-gray-700 max-w-2xl mx-auto mb-6">
+      NeuroAid helps identify learning challenges like dyslexia and strengthens skills through fun, interactive games.
+    </p>
+    <a href="/dashboard" class="px-8 py-4 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 font-semibold text-lg">
+      See My Dashboard
+    </a>
+  </div>
+
+  <div class="main-content container">
+    <h2 class="text-3xl font-bold text-center text-indigo-700 my-8">🎮 Learning Games</h2>
+
+    <div class="text-center mb-8 space-x-4">
+      <button id="toggle-dyslexia" class="px-6 py-3 bg-purple-600 text-white rounded-lg shadow hover:bg-purple-700 font-semibold">Toggle Jumping Text</button>
+      <button id="toggle-scramble" class="px-6 py-3 bg-pink-600 text-white rounded-lg shadow hover:bg-pink-700 font-semibold">Toggle Scrambled Letters</button>
+    </div>
+
+    <!-- GAME CARDS -->
+    <div class="section">
+      <h2>Phonics Karaoke 🎤</h2>
+      <div class="game-card card">
+        <div class="explanation">Listen carefully to a sound or word, then repeat aloud. Speech feedback helps improve phonics and pronunciation.</div>
+        <p class="description">This activity builds sound-letter awareness and pronunciation skills, especially helpful for children learning phonics or those struggling with speech clarity.</p>
+        <div class="row">
+          <label class="font-medium text-sm text-gray-700">Level:
+            <select id="phonics-level" class="border rounded-md p-1">
+              <option value="cvc">CVC (cat)</option>
+              <option value="sent">Short sentences</option>
+              <option value="rhyme">Rhyme practice</option>
+            </select>
+          </label>
+          <button id="phonics-start" class="button dyslexia-button">Start Round</button>
+        </div>
+        <div id="phonics-area" class="mt-4"></div>
+        <div class="score" id="phonics-score"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Sight-Word Flash ⚡</h2>
+      <div class="game-card card">
+        <div class="explanation">A word flashes on screen briefly. Can you recognize it and choose the right one before time runs out?</div>
+        <p class="description">Strengthens rapid word recognition and memory recall — important for building fluency in reading whole words at a glance.</p>
+        <div class="row">
+          <label class="font-medium text-sm text-gray-700">Speed (ms): <input id="sight-speed" type="number" value="1200" min="600" class="border rounded-md p-1 w-24"></label>
+          <button id="sight-start" class="button math-button">Start</button>
+        </div>
+        <div id="sight-area" class="mt-4"></div>
+        <div class="score" id="sight-score"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Flash Naming Race 🏁</h2>
+      <div class="game-card card">
+        <div class="explanation">Objects or pictures flash quickly. Say their names aloud as fast as you can — the system checks your speech accuracy and timing.</div>
+        <p class="description">Improves quick word retrieval and naming speed, boosting confidence in spoken language.</p>
+        <div class="row">
+          <label class="font-medium text-sm text-gray-700">Items per round:
+            <select id="naming-count" class="border rounded-md p-1"><option>8</option><option>10</option><option>12</option></select>
+          </label>
+          <button id="naming-start" class="button dyslexia-button">Start</button>
+        </div>
+        <div id="naming-area" class="mt-4"></div>
+        <div class="score" id="naming-score"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Sound → Word Sprint ⏱️</h2>
+      <div class="game-card card">
+        <div class="explanation">Hear a sound/phoneme. Tap the correct matching word or picture before the timer runs out!</div>
+        <p class="description">Sharpens listening comprehension and strengthens phoneme-word connections.</p>
+        <div class="row">
+          <label class="font-medium text-sm text-gray-700">Speed (s): <input id="soundword-timer" type="number" value="3" min="1" class="border rounded-md p-1 w-24"></label>
+          <button id="soundword-start" class="button math-button">Start</button>
+        </div>
+        <div id="soundword-area" class="mt-4"></div>
+        <div class="score" id="soundword-score"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Word Puzzle Builder 🧩</h2>
+      <div class="game-card card">
+        <div class="explanation">Drag and drop letters into the correct order to spell the target word. Audio clue provided for each round.</div>
+        <p class="description">Encourages spelling accuracy and reinforces letter order skills while engaging fine motor movement.</p>
+        <div class="row">
+          <label class="font-medium text-sm text-gray-700">Difficulty:
+            <select id="puzzle-diff" class="border rounded-md p-1"><option value="easy">Easy</option><option value="medium">Medium</option></select>
+          </label>
+          <button id="puzzle-start" class="button dyslexia-button">Start</button>
+        </div>
+        <div id="puzzle-area" class="mt-4"></div>
+        <div class="score" id="puzzle-score"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Sound Blend Builder 🔊</h2>
+      <div class="game-card card">
+        <div class="explanation">Hear phonemes one by one. Tap the sound tiles in sequence to blend them into a full word.</div>
+        <p class="description">Practices blending sounds together, a core skill for early reading development.</p>
+        <div class="row">
+          <button id="blend-start" class="button math-button">Start</button>
+        </div>
+        <div id="blend-area" class="mt-4"></div>
+        <div class="score" id="blend-score"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Read & Tap Quiz 📖</h2>
+      <div class="game-card card">
+        <div class="explanation">Read a short passage, listen if needed, then tap the correct answer to comprehension questions.</div>
+        <p class="description">Supports comprehension, vocabulary growth, and active reading strategies.</p>
+        <div id="readtap-area" class="mt-4"></div>
+        <div class="score" id="readtap-score"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Calm Story Quiz 🌙</h2>
+      <div class="game-card card">
+        <div class="explanation">A slower-paced reading with hints and retries. Great for relaxed comprehension practice.</div>
+        <p class="description">Perfect for students who need extra time, reducing stress while still building understanding.</p>
+        <div id="calm-area" class="mt-4"></div>
+        <div class="score" id="calm-score"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Word-Picture Match 🖼️</h2>
+      <div class="game-card card">
+        <div class="explanation">Hear and read a word. Match it with the correct picture among several related options.</div>
+        <p class="description">Enhances vocabulary and strengthens connections between text and images.</p>
+        <div id="deep-area" class="mt-4"></div>
+        <div class="score" id="deep-score"></div>
+      </div>
+    </div>
+
+    <div class="back-link text-center my-8">
+      <a href="/" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow hover:bg-indigo-700">
+        ← Back to Home
+      </a>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='games.js') }}"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(function(){
+      let intervalId = null;
+      let scrambleId = null;
+
+      function getTextNodesIn(el) {
+        return $(el).find(":not(iframe,script,button,select,input)").addBack().contents().filter(function() {
+          return this.nodeType === 3;
+        });
+      }
+
+      let textNodes = getTextNodesIn($(".container"));
+
+      function shuffle(str) {
+        let arr = str.split('');
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr.join('');
+      }
+
+      function messUpWord(word) {
+        if (word.length < 3) return word;
+        return word[0] + shuffle(word.slice(1, -1)) + word[word.length-1];
+      }
+
+      function messUpWords() {
+        textNodes.each(function() {
+          let words = this.nodeValue.split(/\b/);
+          for (let i=0; i<words.length; i++) {
+            if (/^\w{3,}$/.test(words[i]) && Math.random() < 0.2) {
+              words[i] = messUpWord(words[i]);
+            }
+          }
+          this.nodeValue = words.join('');
+        });
+      }
+
+      // Jumping text
+      $("#toggle-dyslexia").on("click", function(){
+        if (intervalId) {
+          clearInterval(intervalId);
+          intervalId = null;
+          $(this).text("Toggle Jumping Text");
+          location.reload();
+        } else {
+          intervalId = setInterval(messUpWords, 250);
+          $(this).text("Stop Jumping Text");
+        }
+      });
+
+      // Scrambled letters
+      $("#toggle-scramble").on("click", function(){
+        if (scrambleId) {
+          clearInterval(scrambleId);
+          scrambleId = null;
+          $(this).text("Toggle Scrambled Letters");
+          location.reload();
+        } else {
+          scrambleId = setInterval(messUpWords, 1000);
+          $(this).text("Stop Scrambled Letters");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

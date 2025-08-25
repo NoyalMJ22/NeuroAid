@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Notes & Voice</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet" />
+  <style>
+    .note{border:1px solid #e2e8f0;border-radius:12px;padding:10px;margin:8px 0;background:#fff}
+    .row{display:flex;gap:8px;flex-wrap:wrap}
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2>Notes & Voice</h2>
+
+  <div class="row">
+    <input id="noteText" placeholder="Quick text note…" style="flex:1" />
+    <button id="addText" class="button math-button" style="padding:.5rem 1rem">Add</button>
+  </div>
+
+  <div class="row" style="margin-top:.5rem">
+    <button id="recBtn" class="button dyslexia-button" style="padding:.5rem 1rem">● Start Recording</button>
+    <button id="stopRecBtn" class="button about-button" style="padding:.5rem 1rem" disabled>■ Stop</button>
+  </div>
+
+  <div id="notesList" style="margin-top:1rem"></div>
+  <div class="back-link" style="margin-top:1rem"><a href="/">Back to Home</a></div>
+</div>
+
+<script src="{{ url_for('static', filename='notes.js') }}"></script>
+</body>
+</html>

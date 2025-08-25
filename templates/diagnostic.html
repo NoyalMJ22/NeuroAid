@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dyslexia Diagnostic Screening</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { font-family: "OpenDyslexic", Arial, sans-serif; background:#fdfdfd; }
+    .card { background:#fff; padding:1rem; margin:1rem auto; max-width:600px;
+            border-radius:12px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
+    h1,h2 { text-align:center; }
+    button { padding:0.6rem 1.2rem; margin:0.3rem; border:none;
+             background:#4f46e5; color:white; border-radius:8px; cursor:pointer; }
+    button:hover { background:#4338ca; }
+    .result { font-weight:bold; margin-top:0.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Dyslexia Diagnostic Screening</h1>
+  <p style="text-align:center; max-width:600px; margin:auto;">
+    This short screening includes activities that may highlight dyslexia-related challenges.  
+    ⚠️ <strong>Note:</strong> This is <em>not</em> a medical diagnosis. For proper assessment, consult a professional.
+  </p>
+
+  <div class="card" id="letter-confusion">
+    <h2>Test 1: Letter Confusion</h2>
+    <p>Which letter do you see?</p>
+    <div id="letter-area"></div>
+    <div id="letter-result" class="result"></div>
+  </div>
+
+  <div class="card" id="phonological">
+    <h2>Test 2: Phonological Awareness</h2>
+    <p>Listen and choose the missing sound.</p>
+    <button id="play-sound">🔊 Play Word</button>
+    <div id="phon-options"></div>
+    <div id="phon-result" class="result"></div>
+  </div>
+
+  <div class="card" id="rapid-naming">
+    <h2>Test 3: Rapid Naming</h2>
+    <button id="start-naming">Start</button>
+    <div id="naming-area"></div>
+    <div id="naming-result" class="result"></div>
+  </div>
+
+  <div class="card" id="working-memory">
+    <h2>Test 4: Working Memory</h2>
+    <p>Remember this sequence:</p>
+    <button id="show-sequence">Show Sequence</button>
+    <input type="text" id="sequence-input" placeholder="Type sequence here">
+    <button id="check-sequence">Check</button>
+    <div id="memory-result" class="result"></div>
+  </div>
+
+  <div class="card" id="summary">
+    <h2>Summary Report</h2>
+    <button id="finish">Generate Report</button>
+    <div id="report"></div>
+  </div>
+
+  <script src="diagnostic.js"></script>
+</body>
+</html>

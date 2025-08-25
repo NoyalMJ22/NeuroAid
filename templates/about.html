@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About NeuroAid</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"/>
+
+  <style>
+    @font-face {
+      font-family: 'OpenDyslexic';
+      src: url('/static/fonts/OpenDyslexic-Regular.woff2') format('woff2'),
+           url('/static/fonts/OpenDyslexic-Regular.woff') format('woff'),
+           url('/static/fonts/OpenDyslexic-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    body, h1, h2, h3, h4, h5, h6, p, a, button, input, textarea, select, footer, nav {
+      font-family: 'OpenDyslexic', Arial, sans-serif !important;
+    }
+
+    .high-contrast { background: black !important; color: yellow !important; }
+    .high-contrast a { color: cyan !important; }
+    .large-text { font-size: 20px !important; line-height: 1.9 !important; }
+
+    .card {
+      background: #ffffff;
+      border-radius: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      padding: 2.5rem;
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.12); }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-indigo-600">NeuroAid</h1>
+      <nav class="space-x-6">
+        <a href="/" class="hover:text-indigo-500">Home</a>
+        <a href="/dyslexia" class="hover:text-indigo-500">Dyslexia</a>
+        <a href="/games" class="hover:text-indigo-500">Games</a>
+        <a href="/dashboard" class="hover:text-indigo-500">Dashboard</a>
+        <a href="/about" class="hover:text-indigo-500 font-semibold text-indigo-700">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <div class="max-w-4xl mx-auto px-6 py-16">
+
+    <!-- Accessibility Controls -->
+    <div class="flex flex-wrap justify-center gap-4 mb-10">
+      <button id="toggle-tts" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full shadow hover:bg-indigo-700 transition">🔊 Read Aloud</button>
+      <button id="toggle-dyslexia" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full shadow hover:bg-indigo-700 transition">🔀 Shuffle Letters</button>
+      <button id="toggle-contrast" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full shadow hover:bg-indigo-700 transition">🌗 High Contrast</button>
+      <button id="toggle-large" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full shadow hover:bg-indigo-700 transition">🔎 Large Text</button>
+    </div>
+
+    <!-- About Content -->
+    <div class="card" id="about-container">
+      <h2 class="text-4xl font-extrabold text-center text-indigo-800 mb-6">About NeuroAid</h2>
+      <p class="text-lg leading-relaxed text-gray-700 mb-8 text-center">
+        NeuroAid is a platform dedicated to creating an accessible, inclusive, and supportive learning journey for individuals with dyslexia.  
+        We combine science-backed assessments with fun, interactive, and personalized experiences to make learning easier, engaging, and inspiring.  
+      </p>
+
+      <!-- Key Features -->
+      <div class="grid grid-cols-1 gap-8 items-start mb-10">
+        <div class="flex flex-col items-start space-y-4">
+          <h3 class="text-2xl font-bold text-indigo-600 flex items-center">✨ What We Offer</h3>
+          <ul class="list-disc pl-6 space-y-3 text-gray-700">
+            <li><strong>Assessments:</strong> Tools to identify the type of dyslexia and unique learning needs.</li>
+            <li><strong>Personalized Paths:</strong> Tailored journeys that adapt to each learner’s strengths and challenges.</li>
+            <li><strong>Interactive Games:</strong> Fun activities that strengthen reading, memory, focus, and confidence.</li>
+            <li><strong>Progress Tracking:</strong> Real-time insights into growth for learners, parents, and teachers.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Dyslexia Types -->
+      <div class="bg-gray-100 p-8 rounded-xl shadow-inner mb-10">
+        <h3 class="text-2xl font-bold text-indigo-600 mb-4 text-center">Specialized Support</h3>
+        <p class="text-lg text-gray-700 text-center mb-6">Every learner’s journey is unique. NeuroAid provides targeted tools for different types of dyslexia:</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left text-gray-700">
+          <ul class="list-disc pl-6 space-y-2">
+            <li><strong>Phonological Dyslexia:</strong> Games to strengthen sound-to-letter connections.</li>
+            <li><strong>Surface Dyslexia:</strong> Word recognition and spelling activities.</li>
+            <li><strong>Rapid Naming Deficit:</strong> Speed and memory challenges to boost retrieval.</li>
+          </ul>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><strong>Double Deficit:</strong> Tailored exercises for phonological and naming skills.</li>
+            <li><strong>Visual Dyslexia:</strong> Visual-tracking and pattern games for recognition.</li>
+            <li><strong>Deep & Trauma Dyslexia:</strong> Context-based meaning and confidence-building activities.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Mission -->
+      <p class="text-lg text-center leading-relaxed text-gray-700">
+        At our core, we believe that learning should be inclusive, interactive, and inspiring.  
+        Our mission is to empower every learner with dyslexia to unlock their full potential with the right tools and guidance.
+      </p>
+
+      <!-- Back Button -->
+      <div class="text-center mt-10">
+        <a href="/" class="inline-block px-8 py-4 bg-indigo-600 text-white font-semibold rounded-full shadow-lg hover:bg-indigo-700 transition transform hover:scale-105">
+          ← Back to Home
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 py-6 mt-12 text-center text-gray-600">
+    <p>&copy; 2025 NeuroAid. All rights reserved.</p>
+  </footer>
+
+  <!-- JS for Accessibility Features -->
+  <script>
+    const container = document.getElementById("about-container");
+    const textElements = container.querySelectorAll("p, li, h2, h3, strong, a");
+    let shuffleActive = false, intervalId, originalHtml = new Map();
+
+    // TTS
+    document.getElementById("toggle-tts").addEventListener("click", () => {
+      let text = container.innerText;
+      let utterance = new SpeechSynthesisUtterance(text);
+      speechSynthesis.speak(utterance);
+    });
+
+    // Shuffle
+    function shuffleWord(word) {
+      if (word.length < 4) return word;
+      let chars = word.split("");
+      let middle = chars.slice(1, -1);
+      for (let i = middle.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [middle[i], middle[j]] = [middle[j], middle[i]];
+      }
+      return chars[0] + middle.join("") + chars[chars.length - 1];
+    }
+    function scrambleText() {
+      textElements.forEach(node => {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = originalHtml.get(node) || node.innerHTML;
+        tempDiv.childNodes.forEach(child => {
+          if (child.nodeType === 3) {
+            child.textContent = child.textContent.split(/\s+/).map(shuffleWord).join(" ");
+          }
+        });
+        node.innerHTML = tempDiv.innerHTML;
+      });
+    }
+    document.getElementById("toggle-dyslexia").addEventListener("click", e => {
+      if (!shuffleActive) {
+        textElements.forEach(node => originalHtml.set(node, node.innerHTML));
+        intervalId = setInterval(scrambleText, 1200);
+        shuffleActive = true;
+        e.target.textContent = "✅ Unshuffle Letters";
+      } else {
+        clearInterval(intervalId);
+        originalHtml.forEach((html, node) => node.innerHTML = html);
+        shuffleActive = false;
+        e.target.textContent = "🔀 Shuffle Letters";
+      }
+    });
+
+    // High Contrast
+    document.getElementById("toggle-contrast").addEventListener("click", () => {
+      document.body.classList.toggle("high-contrast");
+    });
+
+    // Large Text
+    document.getElementById("toggle-large").addEventListener("click", () => {
+      container.classList.toggle("large-text");
+    });
+  </script>
+</body>
+</html>
